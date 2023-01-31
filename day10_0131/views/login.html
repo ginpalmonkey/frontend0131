@@ -51,7 +51,7 @@
             .then( res => console.log( res ) )
         })
     </script> -->
-    <script src="/script/fetch.js"></script>
+    <!-- <script src="/script/fetch.js"></script> -->
     <script>
         loginBtn.addEventListener('click', ()=>{
             // GET :  localhost:3000/login 
@@ -60,10 +60,14 @@
             const userPwd = document.getElementById('userPwd').value;
 
             const user = {  userId, userPwd }
+            // 배포 후에 생성된 서버 URL로 주소 변경하기
+            const url = `https://port-0-frontend0131-1jx7m2gldk7qznp.gksl2.cloudtype.app/login`;
 
-            const url = `http://localhost:3000/login`;
-
-            fetchFunc.post( url, user )
+            fetch( url, {
+                method : 'POST',
+                body:JSON.stringify(payload),
+                headers : {'Content-Type':'application/json;charset=utf-8'}
+            })
             .then( res => res.json() )
             .then( res => {
                 if( res.success){
